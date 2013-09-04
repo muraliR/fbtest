@@ -27,6 +27,7 @@ class UsersController < ApplicationController
     val = FbGraph::User.me(params[:oauth_token]).fetch.raw_attributes
     # TODO issue is with the default column of the id from the facebook with the db column
     val.delete('id')
+    val['oauth_token'] = params[:oauth_token]
 
     @user = User.new(val)
 
